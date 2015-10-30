@@ -63,6 +63,9 @@ window.addEventListener("deviceorientation", function(evt){
 //加速度センサー情報取得
 window.addEventListener("devicemotion", function(evt){
 
+  var roundx = function(i) {
+      return Math.round(i*100)/100;
+  };
    //加速度
    var x = evt.acceleration.x;
    var y = evt.acceleration.y;
@@ -71,7 +74,7 @@ window.addEventListener("devicemotion", function(evt){
    var yy = y*y;
    var zz = z*z;
 
-   var xyz = Math.sqrt( xx + yy + zz );
+   var xyz = Math.sqrt( roundx(xx) + roundx(yy) + roundx(zz) );
    if (xyz > max){
      max = xyz;
      document.getElementById("max").innerHTML = max;
@@ -102,7 +105,7 @@ window.addEventListener("devicemotion", function(evt){
     html  += "x:"+x+"<br>";
     html += "y:"+y+"<br>";
     html += "z:"+z+"<br>";
-    html  += "xyz:"+Math.round(xyz*100)/100+"<br>";
+    html  += "xyz:"+roundx(xyz)+"<br>";
 
         html += "傾きx:"+xg+"<br>";
         html += "傾きy:"+yg+"<br>";
