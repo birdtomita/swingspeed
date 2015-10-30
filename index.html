@@ -61,6 +61,7 @@ window.addEventListener("deviceorientation", function(evt){
 }, false);
 
 //加速度センサー情報取得
+/*
 window.addEventListener("devicemotion", function(evt){
 
    //加速度
@@ -115,6 +116,7 @@ window.addEventListener("devicemotion", function(evt){
    document.getElementById("rotation").innerHTML = html;
 
 }, true);
+*/
 document.getElementById("start").addEventListener("click",function(){
   var count = 0;
   var a = new Array();
@@ -129,6 +131,7 @@ document.getElementById("start").addEventListener("click",function(){
       a.push(xyz);
 
       count++;
+      document.getElementById("count").innerHTML = count;
       if (count > 100) {
         var median = function(arr, fn) {
             var half = (arr.length/2)|0;
@@ -155,6 +158,7 @@ document.getElementById("start").addEventListener("click",function(){
   <a href="#" id="start">start</a>
   <h4>def</h4>
   <div id="def" style="color:red"></div>
+  <div id="count" style="color:red"></div>
   <h4>shake</h4>
   <div id="shake" style="color:red"></div>
   <h4>max</h4>
