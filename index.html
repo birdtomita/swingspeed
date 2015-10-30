@@ -105,6 +105,7 @@ window.addEventListener("devicemotion", function(evt){
      }
    }
    lastxyz = xyz;
+   lastTime = now;
 
    //傾き
    var xg = evt.accelerationIncludingGravity.x; //左右
