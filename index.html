@@ -86,19 +86,7 @@ window.addEventListener("devicemotion", function(evt){
 
    var now = new Date().getTime();
 
-   if (xyz != 0) {
-     if (xyz < 0){
-       document.getElementById("as").innerHTML = "-";
-       document.getElementById("as").style.color = "red";
-     } else {
-       document.getElementById("as").innerHTML = "+";
-       document.getElementById("as").style.color = "blue";
-     }
-     speed = (xyz) * (now-last);
-   } else {
-     speed = 0;
-   }
-   lastxyz = xyz;
+   speed = xyz * (now-last) /1000;
    last = now;
    document.getElementById("speed").innerHTML = speed;
    if (speed > maxspeed) {
@@ -106,8 +94,9 @@ window.addEventListener("devicemotion", function(evt){
      document.getElementById("maxspeed").innerHTML = maxspeed;
    }
 
-   if (xyz > 15) {
+   if ((lastxyz - xyz) > 15) {
      if (now - lastTime > 1000) {
+       alert("shake");
        var shake = document.getElementById("shake");
        shake.innerHTML = "shake";
        setTimer(function(){
@@ -115,6 +104,7 @@ window.addEventListener("devicemotion", function(evt){
        },1000);
      }
    }
+   lastxyz = xyz;
 
    //傾き
    var xg = evt.accelerationIncludingGravity.x; //左右
