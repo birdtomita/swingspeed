@@ -7,6 +7,7 @@
 <title>センサー値を表示</title>
 <script>
 var lastTime = 0;
+var last = 0;
 var max = 0;
 var def = 0;
 var lastxyz = 0;
@@ -82,27 +83,37 @@ window.addEventListener("devicemotion", function(evt){
      max = xyz;
      document.getElementById("max").innerHTML = max;
    }
+
+   var now = new Date().getTime();
+
+   if (xyz != 0) {
+     if (xyz < 0){
+       document.getElementById("as").innerHTML = "-";
+       document.getElementById("as").style.color = "red";
+     } else {
+       document.getElementById("as").innerHTML = "+";
+       document.getElementById("as").style.color = "blue";
+     }
+     speed += xyz * (now-last);
+   } else {
+     speed = 0;
+   }
+   lastxyz = xyz;
+   last = now;
+   document.getElementById("speed").innerHTML = speed;
+   if (speed > maxspeed) {
+     maxspeed = speed;
+     document.getElementById("maxspeed").innerHTML = maxspeed;
+   }
+
    if (xyz > 15) {
-     var now = new Date().getTime();
      if (now - lastTime > 1000) {
-       lastTime = now;
        var shake = document.getElementById("shake");
        shake.innerHTML = "shake";
        setTimer(function(){
          shake.innerHTML = "";
        },1000);
      }
-   }
-   if (xyz != 0) {
-     speed += xyz - lastxyz;
-   } else {
-     speed = 0;
-   }
-   lastxyz = xyz;
-   document.getElementById("speed").innerHTML = speed;
-   if (speed > maxspeed) {
-     maxspeed = speed;
-     document.getElementById("maxspeed").innerHTML = maxspeed;
    }
 
    //傾き
@@ -177,6 +188,7 @@ function chkDef(){
   <div id="maxspeed" style="color:red"></div>
   <h4>max as</h4>
   <div id="max"></div>
+  <div id="as"></div>
   <h4>def</h4>
   <div id="def" style="color:red"></div>
   <div id="count" style="color:red"></div>
