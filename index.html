@@ -86,7 +86,7 @@ window.addEventListener("devicemotion", function(evt){
 
    var now = new Date().getTime();
 
-   speed = (xyz - lastxyz) * (now-last) /1000;
+   speed += (xyz - lastxyz) * (now-last) /1000;
    last = now;
    document.getElementById("speed").innerHTML = speed;
    if (speed > maxspeed) {
