@@ -86,7 +86,7 @@ window.addEventListener("devicemotion", function(evt){
 
    var now = new Date().getTime();
 
-   speed = xyz * (now-last) /1000;
+   speed = (xyz - lastxyz) * (now-last) /1000;
    last = now;
    document.getElementById("speed").innerHTML = speed;
    if (speed > maxspeed) {
@@ -94,7 +94,7 @@ window.addEventListener("devicemotion", function(evt){
      document.getElementById("maxspeed").innerHTML = maxspeed;
    }
 
-   if ((lastxyz - xyz) > 15) {
+   if ((xyz - lastxyz) > 15) {
      if (now - lastTime > 1000) {
        alert("shake");
        var shake = document.getElementById("shake");
