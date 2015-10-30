@@ -63,8 +63,9 @@ window.addEventListener("deviceorientation", function(evt){
 //加速度センサー情報取得
 window.addEventListener("devicemotion", function(evt){
 
-  var roundx = function(i) {
-      return Math.round(i*100)/100;
+  var roundx = function(c) {
+    var rt = ((c * 9.0) / 5.0) * 10 + 32.0 ;
+      return Math.round(rt*100)/100;
   };
    //加速度
    var x = evt.acceleration.x;
