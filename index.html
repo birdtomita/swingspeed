@@ -78,7 +78,8 @@ window.addEventListener("devicemotion", function(evt){
    var yy = y*y;
    var zz = z*z;
 
-   var xyz = floorx(Math.sqrt( floorx(xx) + floorx(yy) + floorx(zz) ));
+   //   var xyz = floorx(Math.sqrt( floorx(xx) + floorx(yy) + floorx(zz) ));
+      var xyz = Math.sqrt( xx + yy + zz );
    if (xyz > max){
      max = xyz;
      document.getElementById("max").innerHTML = max;
