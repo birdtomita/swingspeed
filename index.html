@@ -143,9 +143,9 @@ function chkDef(){
 
             return (temp[half-1] + temp[half])/2;
         };
-        window.removeEventListener('devicemotion', chkDefSpeed);
         def = median(a);
         document.getElementById("def").innerHTML = def;
+        window.removeEventListener('devicemotion', this);
       }
     }
   window.addEventListener("devicemotion", chkDefSpeed,true);
