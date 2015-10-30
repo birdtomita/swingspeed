@@ -94,7 +94,7 @@ window.addEventListener("devicemotion", function(evt){
        document.getElementById("as").innerHTML = "+";
        document.getElementById("as").style.color = "blue";
      }
-     speed += (xyz-lastxyz) * (now-last);
+     speed = (xyz) * (now-last);
    } else {
      speed = 0;
    }
