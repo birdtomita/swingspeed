@@ -143,7 +143,7 @@ function chkDef(){
 
             return (temp[half-1] + temp[half])/2;
         };
-        window.removeEventListener("devicemotion",chkDefSpeed,false);
+        window.removeEbentListener('devicemotion', chkDefSpeed);
         def = median(a);
         document.getElementById("def").innerHTML = def;
       }
