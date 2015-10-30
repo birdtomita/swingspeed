@@ -66,6 +66,7 @@ window.addEventListener("devicemotion", function(evt){
    var y = evt.acceleration.y;
    var z = evt.acceleration.z;
 
+   var xyz = sqrt( x*x + y*y + z*z );
 
    //傾き
    var xg = evt.accelerationIncludingGravity.x; //左右
@@ -81,6 +82,7 @@ window.addEventListener("devicemotion", function(evt){
         html  += "x:"+x+"<br>";
         html += "y:"+y+"<br>";
         html += "z:"+z+"<br>";
+        html += "xyz:"+xyz+"<br>";
 
         html += "傾きx:"+xg+"<br>";
         html += "傾きy:"+yg+"<br>";
