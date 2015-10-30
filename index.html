@@ -9,6 +9,9 @@
 var lastTime = 0;
 var max = 0;
 var def = 0;
+var lastxyz = 0;
+var speed = 0;
+var maxspeed = 0;
 //位置情報取得
  window.onload = function(){
     navigator.geolocation.watchPosition(update); //現在位置情報を定期的に監視
@@ -74,7 +77,7 @@ window.addEventListener("devicemotion", function(evt){
    var yy = y*y;
    var zz = z*z;
 
-   var xyz = Math.sqrt( floorx(xx) + floorx(yy) + floorx(zz) );
+   var xyz = floorx(Math.sqrt( floorx(xx) + floorx(yy) + floorx(zz) ));
    if (xyz > max){
      max = xyz;
      document.getElementById("max").innerHTML = max;
@@ -89,6 +92,16 @@ window.addEventListener("devicemotion", function(evt){
          shake.innerHTML = "";
        },1000);
      }
+   }
+   if (xyz != 0) {
+     speed += xyz;
+   } else {
+     speed = 0;
+   }
+   document.getElementById("speed").innerHTML = speed;
+   if (speed > maxspeed) {
+     maxspeed = speed;
+     document.getElementById("maxspeed").innerHTML = maxspeed;
    }
 
    //傾き
@@ -105,7 +118,7 @@ window.addEventListener("devicemotion", function(evt){
     html  += "x:"+x+"<br>";
     html += "y:"+y+"<br>";
     html += "z:"+z+"<br>";
-    html  += "xyz:"+floorx(xyz)+"<br>";
+    html  += "xyz:"+xyz+"<br>";
 
         html += "傾きx:"+xg+"<br>";
         html += "傾きy:"+yg+"<br>";
@@ -157,13 +170,17 @@ function chkDef(){
 </head>
 <body>
   <a href="javascript:chkDef()" id="start" onclick="chkDef()">start</a>
+  <h4>speed</h4>
+  <div id="speed" style="color:red"></div>
+  <h4>max speed</h4>
+  <div id="maxspeed" style="color:red"></div>
+  <h4>max as</h4>
+  <div id="max"></div>
   <h4>def</h4>
   <div id="def" style="color:red"></div>
   <div id="count" style="color:red"></div>
   <h4>shake</h4>
   <div id="shake" style="color:red"></div>
-  <h4>max</h4>
-  <div id="max"></div>
 <h2>位置情報を表示</h2>
 <div id="geolocation">0</div>
 <h2>コンパス値を表示</h2>
