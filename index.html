@@ -6,7 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>センサー値を表示</title>
 <script>
-
+var lastTime = 0;
+var max = 0;
 //位置情報取得
  window.onload = function(){
     navigator.geolocation.watchPosition(update); //現在位置情報を定期的に監視
@@ -57,6 +58,7 @@ window.addEventListener("deviceorientation", function(evt){
     document.getElementById("gyroscope").innerHTML = html;
 
 }, false);
+var shake = document.getElementById("shake");
 
 //加速度センサー情報取得
 window.addEventListener("devicemotion", function(evt){
@@ -70,6 +72,20 @@ window.addEventListener("devicemotion", function(evt){
    var zz = z*z;
 
    var xyz = Math.sqrt( xx + yy + zz );
+   if (xyz > max){
+     max = xyz;
+     document.getElementById("max").innerHTML = max;
+   }
+   if (xyz > 15) {
+     var now = new Date().getTime();
+     if (now - lastTime > 1000) {
+       lastTime = now;
+       shake.innerHTML = "shake";
+       setTimer(function(){
+         shake.innerHTML = "";
+       },800);
+     }
+   }
 
    //傾き
    var xg = evt.accelerationIncludingGravity.x; //左右
@@ -102,6 +118,8 @@ window.addEventListener("devicemotion", function(evt){
 </head>
 <body>
 <h2>位置情報を表示</h2>
+<div id="shake" style="color:red"></div>
+<div id="max"></div>
 <div id="geolocation">0</div>
 <h2>コンパス値を表示</h2>
 <div id="compass">0</div>
