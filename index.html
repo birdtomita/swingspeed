@@ -102,7 +102,7 @@ window.addEventListener("devicemotion", function(evt){
     html  += "x:"+x+"<br>";
     html += "y:"+y+"<br>";
     html += "z:"+z+"<br>";
-    html  += "xyz:"+xyz+"<br>";
+    html  += "xyz:"+Math.round(xyz*100)/100+"<br>";
 
         html += "傾きx:"+xg+"<br>";
         html += "傾きy:"+yg+"<br>";
