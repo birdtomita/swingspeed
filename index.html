@@ -117,7 +117,7 @@ window.addEventListener("devicemotion", function(evt){
 
 }, true);
 */
-document.getElementById("start").addEventListener("click",function(){
+function chkDef(){
   var count = 0;
   var a = new Array();
     function chkDefSpeed(evt){
@@ -150,12 +150,12 @@ document.getElementById("start").addEventListener("click",function(){
     }
   window.addEventListener("devicemotion", chkDefSpeed,false);
 
-});
+}
 
 </script>
 </head>
 <body>
-  <a href="#" id="start">start</a>
+  <a href="javascript:chkDef" id="start" onclick="chkDef">start</a>
   <h4>def</h4>
   <div id="def" style="color:red"></div>
   <div id="count" style="color:red"></div>
