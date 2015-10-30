@@ -94,10 +94,11 @@ window.addEventListener("devicemotion", function(evt){
      }
    }
    if (xyz != 0) {
-     speed += xyz;
+     speed += xyz - lastxyz;
    } else {
      speed = 0;
    }
+   lastxyz = xyz;
    document.getElementById("speed").innerHTML = speed;
    if (speed > maxspeed) {
      maxspeed = speed;
